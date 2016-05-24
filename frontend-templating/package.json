@@ -1,0 +1,16 @@
+{
+  "name": "frontend-templating",
+  "version": "0.0.1",
+  "description": "Frontend Templating",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "quinntynebrown@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "handlebars": "^4.0.5",
+    "react": "^15.1.0"
+  }
+}
