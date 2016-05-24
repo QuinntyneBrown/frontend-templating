@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "angular": "^1.5.5",
+    "gulp": "^3.9.1",
     "handlebars": "^4.0.5",
     "react": "^15.1.0"
   }
