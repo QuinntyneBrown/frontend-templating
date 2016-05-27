@@ -1,1 +1,6 @@
-﻿angular.module("app", []);
+﻿console.log("angular");
+
+
+export class Works {
+
+}

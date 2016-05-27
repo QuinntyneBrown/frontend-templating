@@ -4,17 +4,22 @@
   "description": "Frontend Templating",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --watch"
   },
   "author": "quinntynebrown@gmail.com",
   "license": "MIT",
   "dependencies": {
     "angular": "^1.5.5",
     "angular-route": "^1.5.5",
+    "css-loader": "^0.23.1",
     "gulp": "^3.9.1",
     "handlebars": "^4.0.5",
     "react": "^15.1.0",
+    "ts-loader": "^0.8.2",
     "tsd": "^0.6.5",
-    "typings": "^1.0.4"
+    "typescript": "^1.8.10",
+    "typings": "^1.0.4",
+    "webpack": "^1.13.1"
   }
 }
