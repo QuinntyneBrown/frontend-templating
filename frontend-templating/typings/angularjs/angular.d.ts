@@ -1,7 +1,7 @@
 // Type definitions for Angular JS 1.5
 // Project: http://angularjs.org
 // Definitions by: Diego Vilar <http://github.com/diegovilar>
-// Definitions: https://github.com/borisyankov/DefinitelyTyped
+// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 
 /// <reference path="../jquery/jquery.d.ts" />
@@ -23,7 +23,7 @@ declare module 'angular' {
 ///////////////////////////////////////////////////////////////////////////////
 // ng module (angular.js)
 ///////////////////////////////////////////////////////////////////////////////
-declare module angular {
+declare namespace angular {
 
     // not directly implemented, but ensures that constructed class implements $get
     interface IServiceProviderClass {
@@ -204,7 +204,7 @@ declare module angular {
          * @param name The name of the constant.
          * @param value The constant value.
          */
-        constant(name: string, value: any): IModule;
+        constant<T>(name: string, value: T): IModule;
         constant(object: Object): IModule;
         /**
          * The $controller service is used by Angular to create new controllers.
@@ -294,7 +294,7 @@ declare module angular {
          * @param name The name of the instance.
          * @param value The value.
          */
-        value(name: string, value: any): IModule;
+        value<T>(name: string, value: T): IModule;
         value(object: Object): IModule;
 
         /**
@@ -389,9 +389,9 @@ declare module angular {
         $submitted: boolean;
         $error: any;
         $pending: any;
-        $addControl(control: INgModelController): void;
-        $removeControl(control: INgModelController): void;
-        $setValidity(validationErrorKey: string, isValid: boolean, control: INgModelController): void;
+        $addControl(control: INgModelController | IFormController): void;
+        $removeControl(control: INgModelController | IFormController): void;
+        $setValidity(validationErrorKey: string, isValid: boolean, control: INgModelController | IFormController): void;
         $setDirty(): void;
         $setPristine(): void;
         $commitViewValue(): void;
@@ -1006,7 +1006,16 @@ declare module angular {
          *
          * @param promises An array of promises.
          */
-        all<T>(promises: IPromise<any>[]): IPromise<T[]>;
+        all<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(values: [T1 | IPromise<T1>, T2 | IPromise<T2>, T3 | IPromise<T3>, T4 | IPromise <T4>, T5 | IPromise<T5>, T6 | IPromise<T6>, T7 | IPromise<T7>, T8 | IPromise<T8>, T9 | IPromise<T9>, T10 | IPromise<T10>]): IPromise<[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]>;
+        all<T1, T2, T3, T4, T5, T6, T7, T8, T9>(values: [T1 | IPromise<T1>, T2 | IPromise<T2>, T3 | IPromise<T3>, T4 | IPromise <T4>, T5 | IPromise<T5>, T6 | IPromise<T6>, T7 | IPromise<T7>, T8 | IPromise<T8>, T9 | IPromise<T9>]): IPromise<[T1, T2, T3, T4, T5, T6, T7, T8, T9]>;
+        all<T1, T2, T3, T4, T5, T6, T7, T8>(values: [T1 | IPromise<T1>, T2 | IPromise<T2>, T3 | IPromise<T3>, T4 | IPromise <T4>, T5 | IPromise<T5>, T6 | IPromise<T6>, T7 | IPromise<T7>, T8 | IPromise<T8>]): IPromise<[T1, T2, T3, T4, T5, T6, T7, T8]>;
+        all<T1, T2, T3, T4, T5, T6, T7>(values: [T1 | IPromise<T1>, T2 | IPromise<T2>, T3 | IPromise<T3>, T4 | IPromise <T4>, T5 | IPromise<T5>, T6 | IPromise<T6>, T7 | IPromise<T7>]): IPromise<[T1, T2, T3, T4, T5, T6, T7]>;
+        all<T1, T2, T3, T4, T5, T6>(values: [T1 | IPromise<T1>, T2 | IPromise<T2>, T3 | IPromise<T3>, T4 | IPromise <T4>, T5 | IPromise<T5>, T6 | IPromise<T6>]): IPromise<[T1, T2, T3, T4, T5, T6]>;
+        all<T1, T2, T3, T4, T5>(values: [T1 | IPromise<T1>, T2 | IPromise<T2>, T3 | IPromise<T3>, T4 | IPromise <T4>, T5 | IPromise<T5>]): IPromise<[T1, T2, T3, T4, T5]>;
+        all<T1, T2, T3, T4>(values: [T1 | IPromise<T1>, T2 | IPromise<T2>, T3 | IPromise<T3>, T4 | IPromise <T4>]): IPromise<[T1, T2, T3, T4]>;
+        all<T1, T2, T3>(values: [T1 | IPromise<T1>, T2 | IPromise<T2>, T3 | IPromise<T3>]): IPromise<[T1, T2, T3]>;
+        all<T1, T2>(values: [T1 | IPromise<T1>, T2 | IPromise<T2>]): IPromise<[T1, T2]>;
+        all<TAll>(promises: IPromise<TAll>[]): IPromise<TAll[]>;
         /**
          * Combines multiple promises into a single promise that is resolved when all of the input promises are resolved.
          *
@@ -1698,8 +1707,9 @@ declare module angular {
         /**
          * Controller constructor function that should be associated with newly created scope or the name of a registered
          * controller if passed as a string. Empty function by default.
+         * Use the array form to define dependencies (necessary if strictDi is enabled and you require dependency injection)
          */
-        controller?: string | Function;
+        controller?: string | Function | (string | Function)[];
         /**
          * An identifier name for a reference to the controller. If present, the controller will be published to scope under
          * the controllerAs name. If not present, this will default to be the same as the component name.
@@ -1712,15 +1722,17 @@ declare module angular {
          * If template is a function, then it is injected with the following locals:
          * $element - Current element
          * $attrs - Current attributes object for the element
+         * Use the array form to define dependencies (necessary if strictDi is enabled and you require dependency injection)
          */
-        template?: string | Function;
+        template?: string | Function | (string | Function)[];
         /**
          * path or function that returns a path to an html template that should be used as the contents of this component.
          * If templateUrl is a function, then it is injected with the following locals:
          * $element - Current element
          * $attrs - Current attributes object for the element
+         * Use the array form to define dependencies (necessary if strictDi is enabled and you require dependency injection)
          */
-        templateUrl?: string | Function;
+        templateUrl?: string | Function | (string | Function)[];
         /**
          * Define DOM attribute binding to component properties. Component properties are always bound to the component
          * controller and not to the scope.
@@ -1833,6 +1845,11 @@ declare module angular {
         controller(name: string): any;
         injector(): any;
         scope(): IScope;
+
+        /**
+        *   Overload for custom scope interfaces
+        */
+        scope<T extends IScope>(): T;
         isolateScope(): IScope;
 
         inheritedData(key: string, value: any): JQuery;
@@ -1853,6 +1870,33 @@ declare module angular {
             annotate(fn: Function, strictDi?: boolean): string[];
             annotate(inlineAnnotatedFunction: any[]): string[];
             get<T>(name: string, caller?: string): T;
+            get(name: '$anchorScroll'): IAnchorScrollService
+            get(name: '$cacheFactory'): ICacheFactoryService
+            get(name: '$compile'): ICompileService
+            get(name: '$controller'): IControllerService
+            get(name: '$document'): IDocumentService
+            get(name: '$exceptionHandler'): IExceptionHandlerService
+            get(name: '$filter'): IFilterService
+            get(name: '$http'): IHttpService
+            get(name: '$httpBackend'): IHttpBackendService
+            get(name: '$httpParamSerializer'): IHttpParamSerializer
+            get(name: '$httpParamSerializerJQLike'): IHttpParamSerializer
+            get(name: '$interpolate'): IInterpolateService
+            get(name: '$interval'): IIntervalService
+            get(name: '$locale'): ILocaleService
+            get(name: '$location'): ILocationService
+            get(name: '$log'): ILogService
+            get(name: '$parse'): IParseService
+            get(name: '$q'): IQService
+            get(name: '$rootElement'): IRootElementService
+            get(name: '$rootScope'): IRootScopeService
+            get(name: '$sce'): ISCEService
+            get(name: '$sceDelegate'): ISCEDelegateService
+            get(name: '$templateCache'): ITemplateCacheService
+            get(name: '$templateRequest'): ITemplateRequestService
+            get(name: '$timeout'): ITimeoutService
+            get(name: '$window'): IWindowService
+            get<T>(name: '$xhrFactory'): IXhrFactory<T>
             has(name: string): boolean;
             instantiate<T>(typeConstructor: Function, locals?: any): T;
             invoke(inlineAnnotatedFunction: any[]): any;
@@ -1903,5 +1947,13 @@ declare module angular {
             value(name: string, value: any): IServiceProvider;
         }
 
+    }
+
+    /**
+     * $http params serializer that converts objects to strings
+     * see https://docs.angularjs.org/api/ng/service/$httpParamSerializer
+     */
+    interface IHttpParamSerializer {
+        (obj: Object): string;
     }
 }

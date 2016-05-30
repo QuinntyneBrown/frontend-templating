@@ -79,9 +79,13 @@
     <Content Include="lib\angular.js" />
     <Content Include="lib\handlebars.js" />
     <Content Include="lib\react.js" />
+    <Content Include="node_modules\react-dom\dist\react-dom.js" />
+    <Content Include="node_modules\react\dist\react.js" />
     <Content Include="packages.config" />
     <Content Include="webpack.config.js" />
     <Content Include="package.json" />
+    <Content Include="tsd.json" />
+    <Content Include="tsconfig.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -99,16 +103,22 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="demos\handlebars\src\" />
+    <Folder Include="demos\react\lib\" />
     <Folder Include="dist\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="demos\angular\src\app\app.component.ts" />
     <TypeScriptCompile Include="demos\angular\src\core\index.ts" />
     <TypeScriptCompile Include="demos\angular\src\main.ts" />
-    <TypeScriptCompile Include="demos\handlebars\src\main.ts" />
-    <TypeScriptCompile Include="demos\react\src\main.ts" />
+    <TypeScriptCompile Include="demos\react\src\main.tsx" />
     <TypeScriptCompile Include="typings\angularjs\angular-route.d.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular.d.ts" />
+    <TypeScriptCompile Include="typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="typings\react\react-dom.d.ts" />
+    <TypeScriptCompile Include="typings\react\react.d.ts" />
+    <TypeScriptCompile Include="typings\tsd.d.ts" />
+    <TypeScriptCompile Include="demos\react\src\app.component.tsx" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -125,7 +135,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51451</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

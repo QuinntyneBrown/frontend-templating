@@ -1,18 +1,19 @@
 ﻿module.exports = {
     entry: {
-        "angular": "./demos/angular/src/main.ts",
-        "handlebars": "./demos/handlebars/src/main.ts",
-        "react": "./demos/react/src/main.ts"
+        react: "./demos/react/src/main.tsx"
     },
     output: {
-        path: "/dist",
+        path: "./dist",
         filename: "[name].js"
     },
     resolve: {
-        extensions: ['', '.webpack.js', '.web,js', '.ts', '.js']
+        extensions: ['', '.webpack.js', '.web,js', '.ts', '.tsx', '.js']
     },
     module: {
         loaders: [
+            {
+                test: /\.tsx$/, loader: "ts-loader"
+            },
             {
                 test: /\.ts$/, loader: "ts-loader"
             },
